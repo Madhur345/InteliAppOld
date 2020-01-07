@@ -1,0 +1,27 @@
+<suite name="UnisysAutomationSuite">
+	<test name="Create Ticket Test">
+		<classes>
+			<class name="com.apd.inteliserve.sanity.CreateTicket" />
+		</classes>
+	</test>
+	<test name="Home Test">
+		<classes>
+			<class name="com.apd.inteliserve.sanity.Home" />
+		</classes>
+	</test>
+	<test name="Outages Test">
+		<classes>
+			<class name="com.apd.inteliserve.sanity.Outages" />
+		</classes>
+	</test>
+	<test name="Schedule Contact Test">
+		<classes>
+			<class name="com.apd.inteliserve.sanity.ScheduleContact" />
+		</classes>
+	</test>
+	<test name="Call An Agent Test">
+		<classes>
+			<class name="com.apd.inteliserve.sanity.CallAnAgent" />
+		</classes>
+	</test>
+</suite>

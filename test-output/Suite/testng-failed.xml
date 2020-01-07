@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Suite]">
+  <test thread-count="5" name="InteliAppTest(failed)">
+    <classes>
+      <class name="com.apd.inteliserve.sanity.CreateTicket">
+        <methods>
+          <include name="createTicket"/>
+          <include name="getResultStatus"/>
+          <include name="setEnvironmentAndOpenApplication"/>
+          <include name="closeApplicationAndEndReport"/>
+        </methods>
+      </class> <!-- com.apd.inteliserve.sanity.CreateTicket -->
+    </classes>
+  </test> <!-- InteliAppTest(failed) -->
+</suite> <!-- Failed suite [Suite] -->

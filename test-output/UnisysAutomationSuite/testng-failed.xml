@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [UnisysAutomationSuite]">
+  <test thread-count="5" name="Schedule Contact Test(failed)">
+    <classes>
+      <class name="com.apd.inteliserve.sanity.ScheduleContact">
+        <methods>
+          <include name="getResultStatus"/>
+          <include name="setEnvironmentAndOpenApplication"/>
+          <include name="scheduleContact"/>
+          <include name="closeApplicationAndEndReport"/>
+        </methods>
+      </class> <!-- com.apd.inteliserve.sanity.ScheduleContact -->
+    </classes>
+  </test> <!-- Schedule Contact Test(failed) -->
+</suite> <!-- Failed suite [UnisysAutomationSuite] -->
