@@ -1,42 +1,53 @@
-package com.apd.inteliserve.sanity;
-
-import org.openqa.selenium.By;
-import org.testng.Reporter;
-import org.testng.annotations.Test;
-import com.apd.inteliserve.general.BaseTest;
-import com.relevantcodes.extentreports.LogStatus;
-
-import io.appium.java_client.MobileElement;
-
-/**
- * @author Ranjit 
- *
- */
-public class Demo extends BaseTest {
-	@Test
-	public void demoPageTesting() throws InterruptedException {
-		extentTest = extent.startTest("Demo");
-		extentTest.log(LogStatus.INFO, "Test Started");
-		extentTest.log(LogStatus.INFO, "Performing Operations");
-		driver.findElement(By.xpath("//android.widget.TextView[@text='Demo']")).click();
-		Reporter.log("Demo Console Output",true);
-		Reporter.log("______________________________________",true);
-		Reporter.log("Demo page is clicked", true);
-		driver.findElement(By.className("android.widget.RadioButton")).click();
-		Reporter.log("Report what IVA wants", true);
-		Thread.sleep(4000);
-		//driver.findElement(By.xpath("//android.widget.EditText[@text='Type your message here']")).sendKeys("Unisys");
-		MobileElement textBox=driver.findElement(By.className("android.widget.EditText")); //Added by Vishal
-		textBox.sendKeys("Unisys");
-		Thread.sleep(4000);
-		driver.findElement(By.xpath("//android.widget.Button[@text='Send message']")).click();
-		Reporter.log("Message sent", true);
-		Thread.sleep(10000);
-		driver.findElement(By.xpath("//android.widget.RadioButton[@text='No']")).click();//Added by Vishal
-		//driver.findElements(By.className("android.widget.RadioButton")).get(1).click();
-		Reporter.log("No option is clicked", true);
-		Reporter.log("---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------",true);
-	}
-}
-
-
+//package com.apd.inteliserve.sanity;
+//
+//import java.util.List;
+//import org.testng.Assert;
+//import org.testng.Reporter;
+//import org.testng.annotations.Test;
+//import com.apd.inteliserve.general.Keyword;
+//import com.apd.inteliserve.general.Keyword1;
+//import com.relevantcodes.extentreports.LogStatus;
+//import io.appium.java_client.MobileElement;
+//import io.appium.java_client.android.AndroidElement;
+//
+///**
+// * @author Ranjit 
+// *
+// */
+//public class Demo extends Keyword {
+//	@Test
+//	public void demoPageTesting() throws Exception {
+//		extentTest = extent.startTest("CallAnAgent");
+//		extentTest.log(LogStatus.PASS, "Test Started");
+//		waitForAllElementsVisibility();
+//		try {
+//			clickDemoMenu();
+//			Reporter.log("Demo page is clicked", true);
+//			clickButtonpath();
+//			Reporter.log("Report what IVA wants", true);
+//			MobileElement element = typeMessage();
+//			element.sendKeys("Unisys");
+//			Reporter.log("Company unisys is send", true);
+//			sendMessage();
+//			Reporter.log("Message sent", true);
+//			List<AndroidElement> options = otherTopic();
+//			for (MobileElement MobileElement : options) {
+//				System.out.println(MobileElement.getAttribute("content-desc"));
+//				if (MobileElement.getAttribute("content-desc").equalsIgnoreCase("No")) {
+//					Reporter.log("No option is clicked", true);
+//				}
+//			}
+//			humbergMenu();
+//			visibilty0fSpecificElement("MUTE_PATH");
+//			Reporter.log("Mute option is clicked", true);
+//			MobileElement element1 = closeReset();
+//			element1.click();
+//			Reporter.log("conversatation is clicked", true);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			extentTest.log(LogStatus.FAIL, e.getMessage());
+//			extentTest.log(LogStatus.FAIL, "Test Failed");
+//			Assert.fail();
+//		}
+//	}
+//}

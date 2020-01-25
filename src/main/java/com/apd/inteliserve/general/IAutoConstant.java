@@ -1,7 +1,7 @@
 package com.apd.inteliserve.general;
 
 /**
- * @author MadhurVK
+ * @author  VishalMadhur
  *
  */
 public interface IAutoConstant {

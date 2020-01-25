@@ -1,59 +1,57 @@
-package com.apd.inteliserve.sanity;
-
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-import org.openqa.selenium.By;
-import org.testng.Reporter;
-import org.testng.annotations.Test;
-import com.apd.inteliserve.general.BaseTest;
-import com.relevantcodes.extentreports.LogStatus;
-import io.appium.java_client.MobileElement;
-import io.appium.java_client.android.AndroidElement;
-
-/**
- * @author Ranjit 
- *
- */
-public class Video extends BaseTest {
-	@Test
-	public void videoPageTesting() throws InterruptedException {
-		extentTest = extent.startTest("Video");
-		extentTest.log(LogStatus.INFO, "Test Started");
-		extentTest.log(LogStatus.INFO, "Performing Operations");
-		Reporter.log("Video Console Output",true);
-		Reporter.log("______________________________________",true);
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);//Added by Vishal
-		driver.findElement(By.xpath("//android.widget.TextView[@text='Video']")).click();
-		Thread.sleep(15000);
-		List<AndroidElement> options = driver.findElements(By.className("android.widget.RadioButton"));
-		Reporter.log("Videopage option to be dispaly", true);
-		int count = options.size();
-		System.out.println(count);
-		Thread.sleep(5000);
-		driver.findElement(By.xpath("//android.widget.RadioButton[@text='How does IVA work ?']")).click();
-		Thread.sleep(3000);
-		List<AndroidElement> choice = driver.findElements(By.className("android.widget.RadioButton"));
-		for (MobileElement MobileElement : choice) {
-			System.out.println(MobileElement.getText());
-			//			if(MobileElement.equals("No")) {            
-			//				MobileElement.click();
-			//			}
-			if(MobileElement.getText().equals("No")) {             //Added by Vishal
-				MobileElement.click();
-			}
-		}
-		Reporter.log("No button clicked", true);
-		Thread.sleep(5000);  //Added by vishal
-		driver.findElement(By.xpath("//android.view.View[contains(@text,'It’s a menu toggle button.')]")).click();
-		extentTest.log(LogStatus.PASS, "Cliked On Toggle Button");
-		driver.findElement(By.xpath("//android.widget.Button[@text='Mute']")).click();
-		extentTest.log(LogStatus.PASS, "Conversation Muted");
-		Thread.sleep(3000);
-		driver.findElement(By.xpath("//android.widget.Button[@text='Unmute']")).click();
-		extentTest.log(LogStatus.PASS, "Conversation Unmuted");
-		driver.findElement(By.xpath("//android.widget.Button[@text='Reset Conversation']")).click();
-		Thread.sleep(10000);
-		Reporter.log("Getting text after reseting conversation",true);
-		Reporter.log("------------------------------------------------------------------------------------------------------------------------------------------------------",true);
-	}
-}
+//package com.apd.inteliserve.sanity;
+//
+//import java.util.List;
+//import org.openqa.selenium.support.ui.WebDriverWait;
+//import org.testng.Assert;
+//import org.testng.Reporter;
+//import org.testng.annotations.Test;
+//import com.apd.inteliserve.general.Keyword;
+//import com.apd.inteliserve.general.Lib;
+//import com.relevantcodes.extentreports.LogStatus;
+//import io.appium.java_client.MobileElement;
+//import io.appium.java_client.android.AndroidElement;
+//
+///**
+// * @author Ranjit 
+// *
+// */
+//public class Video extends Keyword {
+//	WebDriverWait wait;
+//
+//	@Test
+//	public void videoPageTesting() throws Exception {
+//		extentTest = extent.startTest("CallAnAgent");
+//		extentTest.log(LogStatus.PASS, "Test Started");
+//		waitForAllElementsVisibility();
+//		try {
+//			clickVideoMenu();
+//			Reporter.log("Video page clicked", true);
+//			List<AndroidElement> options = clickButtonpath();
+//			for (MobileElement mobileElement : options) {
+//				System.out.println(mobileElement.getAttribute("content-desc"));
+//			}
+//			ivaWork();
+//			Reporter.log("How IVA work is clicked", true);
+//			visibilty0fSpecificElement("OPTION_LIST");
+//			Reporter.log("No option is clicked", true);
+//			resetHumberg();
+//			String raw = driver.findElement(Lib.getLocator("MUTE_PATH")).getAttribute("content-desc");
+//			Reporter.log("Mute option is clicked", true);
+//			String raw2 =Lib.getCellValue("ExpectedTest", 8, 1);
+//			if (raw.contains(raw2))
+//				Assert.assertEquals(raw, raw2, "values are not equal");
+//			MobileElement element1 = closeReset();
+//			element1.click();
+//			Reporter.log("conversatation is clicked", true);
+//			String expectedValue =Lib.getCellValue("ExpectedText", 9, 1);
+//			String actualValue = element1.getAttribute("content-desc");
+//			if (actualValue.contains(expectedValue))
+//				Assert.assertEquals(actualValue, expectedValue, "values are not equal");
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			extentTest.log(LogStatus.FAIL, e.getMessage());
+//			extentTest.log(LogStatus.FAIL, "Test Failed");
+//			Assert.fail();
+//		}
+//	}
+//}

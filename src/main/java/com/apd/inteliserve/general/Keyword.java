@@ -1,150 +1,124 @@
 package com.apd.inteliserve.general;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import com.relevantcodes.extentreports.LogStatus;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidElement;
+
+/**
+ * @author  VishalMadhur
+ *
+ */
+
+
 public class Keyword extends BaseTest{
 
-
-
-
-
-	//Login to InteliApp
+	//Method to Login to InteliApp
 
 	public static void loginInteliApp() throws Exception{
-		clickAcceptLink();
-		getEmailTextBox();
-		clickSignInButton();
-		selectUserName();
-	}
-	
-	// Login , Hamburger and Logout Page Keywords
-	
-	public static void clickAcceptLink() throws Exception{
+		try{
 		driver.findElement((Lib.getLocator("ACCEPT_LINK"))).click();
-	}
-	public static void getEmailTextBox() throws Exception{
 		driver.findElement(Lib.getLocator("EMAIL_TEXTBOX")).sendKeys(Lib.getPropertyValue("Email"));
-	}
-	public static void clickSignInButton() throws Exception{
 		driver.findElement(Lib.getLocator("SIGNIN_BUTTON")).click();
-	}
-	public static void selectUserName() throws Exception{
 		driver.findElement(Lib.getLocator("SELECT_USERNAME")).click();
+		}catch(Exception e){
+			e.printStackTrace();
+			extentTest.log(LogStatus.FAIL, "Failed to login");
+		}
 	}
 	public static void clickHamburgerMenu() throws Exception{
-	driver.findElement(Lib.getLocator("HAMBURER_MENU")).click();
+		driver.findElement(Lib.getLocator("HAMBURER_MENU")).click();
 	}
-	public static void clickLogoutLink() throws Exception{
-	driver.findElement(Lib.getLocator("LOGOUT_LINK")).click();
-	}
-	
-	//waits
 
-	public static void waitForIvaChatToLoad() throws InterruptedException{
+	//Method for Click Action
+	public static  void click(String element){
+		try{
+			driver.findElement(Lib.getLocator(element)).click();
+			extentTest.log(LogStatus.PASS, element +" found"); 
+		}catch(Exception e){
+			String screenshotPath = Lib.captureScreenshots(driver, element);
+			extentTest.log(LogStatus.FAIL, extentTest.addScreenCapture(screenshotPath));
+			extentTest.log(LogStatus.FAIL, element + " is Not Displayed or Clickable");
+			extentTest.log(LogStatus.FAIL, e.getMessage());
+		}
+	}
+
+	//Method to Send Test Data
+	public  void sendTestData(String element,String sheet,int row,int colomn) throws Exception{
+		try{
+			driver.findElement(Lib.getLocator(element)).sendKeys(Lib.getCellValue(sheet, row, colomn));
+		}catch(Exception e){
+			String screenshotPath = Lib.captureScreenshots(driver, element);
+			extentTest.log(LogStatus.FAIL, extentTest.addScreenCapture(screenshotPath));
+			extentTest.log(LogStatus.FAIL, "Failed To Send Data in Element "+ element +" As Element is not present");
+		}
+	}
+
+	//Method to Get Text for Element
+	public String getText(String element){
+		try{
+			return driver.findElement((Lib.getLocator(element))).getText();
+		}catch(Exception e){
+			String screenshotPath = Lib.captureScreenshots(driver, element);
+			extentTest.log(LogStatus.FAIL, extentTest.addScreenCapture(screenshotPath));
+			extentTest.log(LogStatus.FAIL, "Failed to Get Text for Element " + element);
+			extentTest.log(LogStatus.FAIL, e.getMessage());
+		}
+		return null;
+	}
+
+	// Method to Find Element in Web Page
+	public static MobileElement getElement(String element){
+		try{
+			return driver.findElement(Lib.getLocator(element));
+		}catch(Exception e){
+			String screenshotPath = Lib.captureScreenshots(driver, element);
+			extentTest.log(LogStatus.FAIL, extentTest.addScreenCapture(screenshotPath));
+			
+			extentTest.log(LogStatus.FAIL, e.getMessage());
+		}
+		return null;
+	}
+
+	// Method to Find Element in Web Page
+	public static List<AndroidElement> getElements(String element){
+		try{
+			return driver.findElements(Lib.getLocator(element));
+		}catch(Exception e){
+			String screenshotPath = Lib.captureScreenshots(driver, element);
+			extentTest.log(LogStatus.FAIL, extentTest.addScreenCapture(screenshotPath));
+			extentTest.log(LogStatus.FAIL, element+" Elements are Not Present");
+			extentTest.log(LogStatus.FAIL, e.getMessage());
+		}
+		return null;
+	}
+
+	//Methods for Waits & Threads
+	public void waitForAllElementsVisibility(){
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+	}
+
+	public void waitForSpecificElementVisibility(String element){
+		try{
+			WebDriverWait wait= new WebDriverWait(driver, 30);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(Lib.getLocator(element))).click();
+		}catch(Exception e){
+			String screenshotPath = Lib.captureScreenshots(driver, element);
+			extentTest.log(LogStatus.FAIL, extentTest.addScreenCapture(screenshotPath));
+			extentTest.log(LogStatus.FAIL, element + " Element is Not Visible ");
+		}
+	}
+
+	public void waitForIvaChatToLoad() throws InterruptedException{
 		Thread.sleep(15000);
 	}
-	public static void waitForMaxmimunTimeToLoad() throws InterruptedException{
+	public static  void waitForMaxmimunTimeToLoad() throws InterruptedException{
 		Thread.sleep(10000);
 	}
-	public static void waitForMiniumTimeToLoad() throws InterruptedException{
+	public  void waitForMiniumTimeToLoad() throws InterruptedException{
 		Thread.sleep(5000);
 	}
-
-	// Call An Agent Page Keywords
-
-	public void clickCallAnAgentMenu() throws Exception{
-		driver.findElement(Lib.getLocator("CALL_AN_AGENT_LINK")).click();
-	}
-	public String getCallAnAgentHeaderText() throws Exception{
-		return driver.findElement((Lib.getLocator("CALL_AN_AGENT_HEADER"))).getText();
-	}
-	public MobileElement getAgentNumber() throws Exception{
-		return driver.findElement(Lib.getLocator("AGENT_NUMBER"));
-	}
-
-	// Schedule Contact Page Keywords
-
-	public void clickScheduleContactMenu() throws Exception{
-		driver.findElement(Lib.getLocator("SCHEDULE_CONTACT_LINK")).click();
-	}
-	public MobileElement getEditTextBox() throws Exception{
-		return driver.findElement(Lib.getLocator("EDIT_TEXTBOX"));
-	}
-	public void clickYesButton() throws Exception{
-		driver.findElement(Lib.getLocator("YES_BUTTON")).click();
-	}
-	public void clickNoButton() throws Exception{
-		driver.findElement(Lib.getLocator("NO_BUTTON")).click();
-	}
-	public void clickChatToggleButton() throws Exception{
-		driver.findElement(Lib.getLocator("CHAT_TOGGLE_BUTTON")).click();
-	}
-	public List<AndroidElement> getIVAText() throws Exception{
-		return driver.findElements(Lib.getLocator("IVA_TEXT"));
-	}
-	public void closeChatNotes() throws Exception{
-		driver.findElement(Lib.getLocator("CLOSE_CHAT_NOTES")).click();
-	}
-	public void clickToggleButton() throws Exception{
-		driver.findElement(Lib.getLocator("TOGGLE_BUTTON")).click();
-	}
-	public void clickMuteIcon() throws Exception{
-		driver.findElement(Lib.getLocator("MUTE_ICON")).click();
-	}
-	public void clickUnMuteIcon() throws Exception{
-		driver.findElement(Lib.getLocator("UNMUTE_ICON")).click();
-	}
-	public void clickResetIcon() throws Exception{
-		driver.findElement(Lib.getLocator("RESET_ICON")).click();
-	}
-
-	// Create Ticket Page Keywords
-
-	public void clickCreateTicketMenu() throws Exception{
-		driver.findElement(Lib.getLocator(("CREATE_TICKET_LINK"))).click();
-
-	}
-	public String getcreteTicketTitleText() throws Exception{
-		return driver.findElement(Lib.getLocator("CREATE_TICKET_TITLE")).getText();
-	}
-	public MobileElement getTitleTextBox() throws Exception{
-		return driver.findElement(Lib.getLocator("TITLE_TEXTBOX"));
-	}
-	public MobileElement getDiscriptionTextBox() throws Exception{
-		return driver.findElement(Lib.getLocator("DESCRIPTION_TEXTBOX"));
-	}
-	public void clickCreateTicketButton() throws Exception{
-		driver.findElement(Lib.getLocator("CREATE_TICKET_BUTTON")).click();
-	}
-
-	// Home Page Keywords
-
-	public void clickHomeMenu() throws Exception{
-		driver.findElement(Lib.getLocator("HOME_LINK")).click();
-	}
-	public void clickSendMessage() throws Exception{
-		driver.findElement(Lib.getLocator("SEND_MESSAGE")).click();
-	}
-	public MobileElement viewVideo() throws Exception{
-		return driver.findElement(Lib.getLocator("VIDEO_VIEW"));
-	}
-	public void playVideo() throws Exception{
-		driver.findElement(Lib.getLocator("VIDEO_PLAY")).click();
-	}
-
-	// Outages Page Keywords
-
-	public void clickOutagesMenu() throws Exception{
-		driver.findElement(Lib.getLocator("OUTAGES_LINK")).click();
-	}
-	public void clickExchangeOutageItem() throws Exception{
-		driver.findElement(Lib.getLocator("EXCHNAGE_OUTAGE")).click();
-	}
-
 }
-
-
-
-
-

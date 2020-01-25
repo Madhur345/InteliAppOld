@@ -1,6 +1,5 @@
 package com.apd.inteliserve.sanity;
 
-import java.util.concurrent.TimeUnit;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -10,20 +9,23 @@ import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 
 /**
- * @author MadhurVK
+ * @author VishalMadhur
  *
  */
+
+//This Test Script is for Testing "Outages" Page
+
 public class Outages extends Keyword {
 
 	@Test
 	public void outagesTest() throws Exception {
 		extentTest = extent.startTest("Outages");
 		extentTest.log(LogStatus.PASS, "Test Started");
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		waitForAllElementsVisibility();
 		try{
-			clickOutagesMenu();
+			click("OUTAGES_LINK");
 			extentTest.log(LogStatus.PASS, "Cliked on Outages Menu");
-			clickExchangeOutageItem();
+			click("EXCHNAGE_OUTAGE");
 			extentTest.log(LogStatus.PASS, "Clicking On First Item");
 			extentTest.log(LogStatus.INFO, "Checking If Scrolling Is Working");
 			String lastItem="HelpSTAR Test Drive Outage";

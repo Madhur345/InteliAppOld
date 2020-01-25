@@ -8,6 +8,11 @@ import com.codoid.products.fillo.Fillo;
 import com.codoid.products.fillo.Recordset;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
+/**
+ * @author  VishalMadhur
+ *
+ */
+
 public class XLSReader implements IAutoConstant {
 
     private final Fillo fillo;

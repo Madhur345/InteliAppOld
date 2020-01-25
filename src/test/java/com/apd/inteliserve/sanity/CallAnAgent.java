@@ -1,6 +1,5 @@
 package com.apd.inteliserve.sanity;
 
-import java.util.concurrent.TimeUnit;
 
 import org.testng.Assert;
 import org.testng.Reporter;
@@ -14,26 +13,34 @@ import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
 
 /**
- * @author MadhurVK
+ * @author  VishalMadhur
  *
  */
+
+// This Test Script is for Testing "Call An Agent" Page
+
 public class CallAnAgent extends Keyword {
 
 	@Test
 	public void callAgent() throws Exception {
 		extentTest = extent.startTest("CallAnAgent");
 		extentTest.log(LogStatus.PASS, "Test Started");
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		waitForAllElementsVisibility();
 		SoftAssert s = new SoftAssert();
 		try{
-			clickCallAnAgentMenu();
+			click("CALL_AN_AGENT_LINK");
 			extentTest.log(LogStatus.PASS, "Cliked on Call An Agent Menu");
-			String actualText=getCallAnAgentHeaderText();
+			String actualText=getText("CALL_AN_AGENT_HEADER");
 			Reporter.log("The actual text displayed is "+actualText,true);
 			String expectedText =Lib.getCellValue("Expectedtext",4, 1);
+			if(actualText.equals(expectedText)){
+				extentTest.log(LogStatus.PASS, "Call an Agent Text Verified");
+			}
+			else{
+				extentTest.log(LogStatus.PASS, "Call an Agent Text Verification Failed");
+			}
 			s.assertEquals(actualText, expectedText);
-			extentTest.log(LogStatus.PASS, "Call an Agent Text Verified");
-			MobileElement agentNumber=getAgentNumber();
+			MobileElement agentNumber=getElement("AGENT_NUMBER");
 			if(agentNumber.isDisplayed()){
 				extentTest.log(LogStatus.PASS, "Agent Number Displayed");
 				Reporter.log("Agent number displayed is " +agentNumber.getText(),true);

@@ -2,8 +2,6 @@ package com.apd.inteliserve.sanity;
 
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
-
 import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.Test;
@@ -14,9 +12,11 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidElement;
 
 /**
- * @author MadhurVK
+ * @author  VishalMadhur
  *
  */
+
+//This Test Script is for Testing "Home" Page
 
 public class Home extends Keyword {
 
@@ -28,41 +28,40 @@ public class Home extends Keyword {
 		SoftAssert s = new SoftAssert();
 		Reporter.log("Home Console Output",true);
 		Reporter.log("______________________________________",true);
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		waitForAllElementsVisibility();
 		try{
-			clickHomeMenu();
+			click("HOME_LINK");
 			extentTest.log(LogStatus.PASS, "Cliked on Create Home Menu");
 			waitForIvaChatToLoad();
-			MobileElement textBox=getEditTextBox();
-			textBox.sendKeys("Tell me about Unisys ");
-			clickSendMessage();
+			sendTestData("EDIT_TEXTBOX", "TestData", 7, 1);
+			click("SEND_MESSAGE_ICON");
 			extentTest.log(LogStatus.PASS, "Request Data Sent");
 			waitForMiniumTimeToLoad();
-			clickNoButton();
+			click("NO_BUTTON");
 			extentTest.log(LogStatus.PASS, "clicked on No Button");
-			clickToggleButton();
+			click("TOGGLE_BUTTON");
 			extentTest.log(LogStatus.PASS, "Cliked On Toggle Button");
-			clickMuteIcon();
+			click("MUTE_ICON");
 			extentTest.log(LogStatus.PASS, "Conversation Muted");
 			waitForMiniumTimeToLoad();
-			clickUnMuteIcon();
+			click("UNMUTE_ICON");
 			extentTest.log(LogStatus.PASS, "Conversation Unmuted");
-			clickResetIcon();
+			click("RESET_ICON");
 			waitForIvaChatToLoad();
 			Reporter.log("Getting text after reseting conversation",true);
 			Reporter.log("===================================================================",true);
-			List<AndroidElement> text1= getIVAText();
-			for(MobileElement element1 : text1) {
-				String reset= element1.getText();
+			List<AndroidElement> text= getElements("IVA_TEXT");
+			for(MobileElement element : text) {
+				String reset= element.getText();
 				Reporter.log(reset,true);
 			}
 			waitForIvaChatToLoad();
-			textBox.sendKeys("Tell me about Unisys ");
-			clickSendMessage();
+			sendTestData("EDIT_TEXTBOX", "TestData", 7, 1);
+			click("SEND_MESSAGE_ICON");
 			extentTest.log(LogStatus.PASS, "Request Data Sent");
-			clickNoButton();
+			click("NO_BUTTON");
 			extentTest.log(LogStatus.PASS, "clicked on No Button");
-			MobileElement video=viewVideo();
+			MobileElement video=getElement("VIDEO_VIEW");
 			waitForMaxmimunTimeToLoad();
 			if(video.isDisplayed()){
 				extentTest.log(LogStatus.PASS, "Video Displayed");
@@ -71,7 +70,7 @@ public class Home extends Keyword {
 			}
 			s.assertTrue(video.isDisplayed());
 			waitForMiniumTimeToLoad();
-			playVideo();
+			click("VIDEO_PLAY");
 			extentTest.log(LogStatus.PASS, "Video Played");
 			waitForMaxmimunTimeToLoad();
 			extentTest.log(LogStatus.PASS, "Test Successfull");

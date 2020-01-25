@@ -17,7 +17,7 @@ import org.openqa.selenium.WebDriver;
 import com.relevantcodes.extentreports.ExtentReports;
 
 /**
- * @author MadhurVK
+ * @author  VishalMadhur
  *
  */
 public class Lib implements IAutoConstant {
@@ -31,7 +31,7 @@ public class Lib implements IAutoConstant {
 			Date d = new Date();
 			String currentDate = d.toString().replaceAll(":","_");
 			extent=new ExtentReports(System.getProperty("user.dir")+"/ExtentReports/"+"InteliServe Test Automation Report" +"_"+ currentDate + ".html", true);
-			extent.loadConfig(new File(System.getProperty("user.dir")+"/testdata/ReportsConfig.xml")); 
+			extent.loadConfig(new File(System.getProperty("user.dir")+""+REPORTS_CONFIG_PATH+"")); 
 			extent.addSystemInfo("Appium Version", "1.15.1").addSystemInfo("Platform", "Android").addSystemInfo("Android Version", "9-Pie").addSystemInfo("User Name", "Vishal Madhur");
 		}catch(Exception e) {
 		}

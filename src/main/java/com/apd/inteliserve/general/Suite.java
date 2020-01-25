@@ -3,10 +3,14 @@ package com.apd.inteliserve.general;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
-
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+
+/**
+ * @author  VishalMadhur
+ *
+ */
 
 
 @JacksonXmlRootElement(localName = "suite")

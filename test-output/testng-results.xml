@@ -1,17 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+<testng-results skipped="0" failed="0" total="1" passed="1">
   <reporter-output>
+    <line>
+      <![CDATA[The actual text displayed is Call an Agent]]>
+    </line>
+    <line>
+      <![CDATA[Agent number displayed is +18881234567]]>
+    </line>
   </reporter-output>
-  <suite name="Default suite" duration-ms="1470" started-at="2020-01-06T09:33:58Z" finished-at="2020-01-06T09:34:00Z">
+  <suite name="Default suite" duration-ms="13445" started-at="2020-01-16T10:52:13Z" finished-at="2020-01-16T10:52:27Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="1470" started-at="2020-01-06T09:33:58Z" finished-at="2020-01-06T09:34:00Z">
-      <class name="com.apd.inteliserve.sanity.SuiteRun">
-        <test-method status="PASS" signature="suiteRun()[pri:0, instance:com.apd.inteliserve.sanity.SuiteRun@57fffcd7]" name="suiteRun" duration-ms="1433" started-at="2020-01-06T09:33:58Z" finished-at="2020-01-06T09:34:00Z">
+    <test name="Default test" duration-ms="13445" started-at="2020-01-16T10:52:13Z" finished-at="2020-01-16T10:52:27Z">
+      <class name="com.apd.inteliserve.sanity.CallAnAgent">
+        <test-method status="PASS" signature="setEnvironmentAndOpenApplication()[pri:0, instance:com.apd.inteliserve.sanity.CallAnAgent@49993335]" name="setEnvironmentAndOpenApplication" is-config="true" duration-ms="40028" started-at="2020-01-16T16:21:33Z" finished-at="2020-01-16T16:22:13Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- suiteRun -->
-      </class> <!-- com.apd.inteliserve.sanity.SuiteRun -->
+        </test-method> <!-- setEnvironmentAndOpenApplication -->
+        <test-method status="PASS" signature="callAgent()[pri:0, instance:com.apd.inteliserve.sanity.CallAnAgent@49993335]" name="callAgent" duration-ms="13398" started-at="2020-01-16T16:22:14Z" finished-at="2020-01-16T16:22:27Z">
+          <reporter-output>
+            <line>
+              <![CDATA[The actual text displayed is Call an Agent]]>
+            </line>
+            <line>
+              <![CDATA[Agent number displayed is +18881234567]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- callAgent -->
+        <test-method status="PASS" signature="getResultStatus(org.testng.ITestResult)[pri:0, instance:com.apd.inteliserve.sanity.CallAnAgent@49993335]" name="getResultStatus" is-config="true" duration-ms="9" started-at="2020-01-16T16:22:27Z" finished-at="2020-01-16T16:22:27Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=callAgent status=SUCCESS method=CallAnAgent.callAgent()[pri:0, instance:com.apd.inteliserve.sanity.CallAnAgent@49993335] output=The actual text displayed is Call an Agent]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getResultStatus -->
+        <test-method status="PASS" signature="closeApplicationAndEndReport()[pri:0, instance:com.apd.inteliserve.sanity.CallAnAgent@49993335]" name="closeApplicationAndEndReport" is-config="true" duration-ms="33709" started-at="2020-01-16T16:22:27Z" finished-at="2020-01-16T16:23:01Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeApplicationAndEndReport -->
+      </class> <!-- com.apd.inteliserve.sanity.CallAnAgent -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

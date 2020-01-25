@@ -1,23 +1,20 @@
 package com.apd.inteliserve.sanity;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
-
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.Test;
 import com.apd.inteliserve.general.Keyword;
-import com.apd.inteliserve.general.Lib;
 import com.relevantcodes.extentreports.LogStatus;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidElement;
 
 /**
- * @author MadhurVK
+ * @author VishalMadhur
  *
  */
+
+//This Test Script is for Testing "Schedule Contact" Page
 
 public class ScheduleContact extends Keyword{
 
@@ -25,72 +22,66 @@ public class ScheduleContact extends Keyword{
 	public void scheduleContact() throws InterruptedException {
 		extentTest = extent.startTest("ScheduleContact");
 		extentTest.log(LogStatus.PASS, "Test Started");
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		waitForAllElementsVisibility();
 		Reporter.log("ScheduleContact Console Output",true);
 		Reporter.log("______________________________________",true);
 		try{
-			clickScheduleContactMenu();
-			waitForIvaChatToLoad();
+			click("SCHEDULE_CONTACT_LINK");
 			extentTest.log(LogStatus.PASS, "Cliked on Schedule Contact Menu");
-			MobileElement textBox=getEditTextBox();
-			String mobileNumber=Lib.getPropertyValue("MOBILE");
-			waitForIvaChatToLoad();;
-			textBox.sendKeys(mobileNumber);
-			extentTest.log(LogStatus.PASS, "Mobile Number Entered");
-			WebDriverWait wait= new WebDriverWait(driver, 30);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(Lib.getLocator("SEND_MESSAGE"))).click();
+			waitForIvaChatToLoad();
+			sendTestData("EDIT_TEXTBOX", "TestData", 1, 1);
+			extentTest.log(LogStatus.PASS, "Mobile Number Entered"); 
+			waitForSpecificElementVisibility("SEND_MESSAGE_ICON");
 			extentTest.log(LogStatus.PASS, "Mobile Number Sent");
-			String country=Lib.getPropertyValue("COUNTRY");
-			waitForIvaChatToLoad();;
-			textBox.sendKeys(country);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(Lib.getLocator("SEND_MESSAGE"))).click();
+			waitForMaxmimunTimeToLoad();
+			sendTestData("EDIT_TEXTBOX", "TestData", 2, 1);
+			waitForSpecificElementVisibility("SEND_MESSAGE_ICON");
 			extentTest.log(LogStatus.PASS, "Region/Country Selected");
-			String date=Lib.getPropertyValue("DATE");
-			waitForIvaChatToLoad();;
-			textBox.sendKeys(date);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(Lib.getLocator("SEND_MESSAGE"))).click();
+			waitForMiniumTimeToLoad();
+			sendTestData("EDIT_TEXTBOX", "TestData", 3, 1);
+			waitForSpecificElementVisibility("SEND_MESSAGE_ICON");
 			extentTest.log(LogStatus.PASS, "Date Entered");
-			String time =Lib.getPropertyValue("TIME");
-			waitForIvaChatToLoad();;
-			textBox.sendKeys(time);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(Lib.getLocator("SEND_MESSAGE"))).click();
+			waitForMiniumTimeToLoad();
+			sendTestData("EDIT_TEXTBOX", "TestData", 4, 1);
+			waitForSpecificElementVisibility("SEND_MESSAGE_ICON");
 			extentTest.log(LogStatus.PASS, "Time Entered");
-			waitForIvaChatToLoad();;
-			textBox.sendKeys("I need a ios and a android mobile  for testing");
-			wait.until(ExpectedConditions.visibilityOfElementLocated(Lib.getLocator("SEND_MESSAGE"))).click();
+			waitForIvaChatToLoad();
+			sendTestData("EDIT_TEXTBOX", "TestData", 6, 1);
+			waitForSpecificElementVisibility("SEND_MESSAGE_ICON");
 			extentTest.log(LogStatus.PASS, "Contact Reason Entered");
-			waitForIvaChatToLoad();;
-			clickYesButton();
+			waitForIvaChatToLoad();
+			click("YES_BUTTON");
 			extentTest.log(LogStatus.PASS, "clicked On Yes Button");
 			waitForIvaChatToLoad();
-			clickNoButton();
+			click("NO_BUTTON");
 			extentTest.log(LogStatus.PASS, "clicked On No Button");
-			waitForIvaChatToLoad();;
-			clickChatToggleButton();
+			waitForIvaChatToLoad();
+			click("CHAT_TOGGLE_BUTTON");
 			extentTest.log(LogStatus.PASS, "Chat Details Opened");
-			waitForIvaChatToLoad();;
+			waitForMiniumTimeToLoad();
 			Reporter.log("Getting text after conversation is closed",true);
 			Reporter.log("===================================================================",true);
-			List<AndroidElement> text= getIVAText();
+			List<AndroidElement> text= getElements("IVA_TEXT");
 			for(MobileElement element : text) {
 				String getData= element.getText();
 				Reporter.log(getData,true);
 			}
 			extentTest.log(LogStatus.PASS, "Got The Text");
-			closeChatNotes();
+			click("CLOSE_CHAT_NOTES_ICON");
 			extentTest.log(LogStatus.PASS, "closed Chat Notes");
-			clickToggleButton();
+			click("TOGGLE_BUTTON");
 			extentTest.log(LogStatus.PASS, "Cliked On Toggle Button");
-			clickMuteIcon();
+			click("MUTE_ICON");
+
 			extentTest.log(LogStatus.PASS, "Conversation Muted");
 			waitForMiniumTimeToLoad();
-			clickUnMuteIcon();
+			click("UNMUTE_ICON");
 			extentTest.log(LogStatus.PASS, "Conversation Unmuted");
-			clickResetIcon();
+			click("RESET_ICON");
 			waitForIvaChatToLoad();
 			Reporter.log("Getting text after reseting conversation",true);
 			Reporter.log("===================================================================",true);
-			List<AndroidElement> text1= getIVAText();
+			List<AndroidElement> text1= getElements("IVA_TEXT");
 			for(MobileElement element1 : text1) {
 				String reset= element1.getText();
 				Reporter.log(reset,true);

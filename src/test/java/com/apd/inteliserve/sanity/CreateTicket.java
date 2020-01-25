@@ -3,7 +3,6 @@ package com.apd.inteliserve.sanity;
 import com.apd.inteliserve.general.Keyword;
 import com.apd.inteliserve.general.Lib;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -12,9 +11,11 @@ import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 
 /**
- * @author MadhurVK
+ * @author  VishalMadhur
  *
  */
+
+//This Test Script is for Testing "Create Ticket" Page
 
 public class CreateTicket extends Keyword {
 
@@ -22,12 +23,12 @@ public class CreateTicket extends Keyword {
 	public  void createTicket() throws Exception {
 		extentTest = extent.startTest("CreateTicket");
 		extentTest.log(LogStatus.PASS, "Test Started");
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		waitForAllElementsVisibility();
 		SoftAssert s = new SoftAssert();
 		try{
-			clickCreateTicketMenu();
+			click("CREATE_TICKET_LINK");
 			extentTest.log(LogStatus.PASS, "Cliked on Create Ticket Menu");
-			String actualTitle=getcreteTicketTitleText();
+			String actualTitle=getText("CREATE_TICKET_TITLE");
 			String expectedTitle=Lib.getCellValue("ExpectedText",1,1);
 			if(actualTitle.equals(expectedTitle)){
 				extentTest.log(LogStatus.PASS, "Title Matched");
@@ -37,8 +38,8 @@ public class CreateTicket extends Keyword {
 			}
 			s.assertEquals(actualTitle, expectedTitle);
 			String username = "Appium Tool " + new Random().nextInt(1000);
-			MobileElement titleTextBox=getTitleTextBox();
-			String actualTitleTextBox=titleTextBox.getText();
+			MobileElement titleTextBox=getElement("TITLE_TEXTBOX");
+			String actualTitleTextBox=getText("TITLE_TEXTBOX");
 			String expectedTitleTextBox=Lib.getCellValue("ExpectedText",2,1);
 			if(actualTitleTextBox.equals(expectedTitleTextBox)){
 				extentTest.log(LogStatus.PASS, "Title Text Verified");
@@ -49,8 +50,8 @@ public class CreateTicket extends Keyword {
 			s.assertEquals(actualTitleTextBox,expectedTitleTextBox);
 			titleTextBox.sendKeys(username);
 			extentTest.log(LogStatus.PASS, "Title Entered");
-			MobileElement description=getDiscriptionTextBox();
-			String actualDescription =description.getText();
+			MobileElement description=getElement("DESCRIPTION_TEXTBOX");
+			String actualDescription =getText("DESCRIPTION_TEXTBOX");
 			String expectedDescription=Lib.getCellValue("Expectedtext",3, 1);
 			if(actualDescription.equals(expectedDescription)){
 				extentTest.log(LogStatus.PASS, "Description Text Verified");
@@ -61,7 +62,7 @@ public class CreateTicket extends Keyword {
 			s.assertEquals(actualDescription, expectedDescription);
 			description.sendKeys("	This tool is  used for automating manual test cases");
 			extentTest.log(LogStatus.PASS, "Description Entered");
-			clickCreateTicketButton();
+			click("CREATE_TICKET_BUTTON");
 			extentTest.log(LogStatus.PASS, "Clicked On Create Ticket Button");
 			waitForMiniumTimeToLoad();
 			MobileElement listItem=driver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView("
